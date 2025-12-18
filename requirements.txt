@@ -1,0 +1,16 @@
+transformers==4.56.2
+torch>=2.8,<2.9
+einops==0.8.0
+environs==11.0.0
+sacremoses==0.1.1
+accelerate>=0.21.0
+wandb>=0.15.0
+tensorboard>=2.13.0
+peft>=0.6.0
+numpy>=1.21.0
+h5py>=3.7.0
+pandas==2.3.2
+accelerate
+flash-attn==2.8.3
+python-dotenv
+

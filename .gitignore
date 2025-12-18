@@ -1,0 +1,92 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv
+venv/
+env/
+ENV/
+
+# Testing
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+*.cover
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Linting/type checking
+.ruff_cache/
+.mypy_cache/
+.pytype/
+
+# Data and outputs
+*.h5
+*.hdf5
+output/
+outputs/
+checkpoints/
+converted_checkpoints/
+/data/
+/cache/
+
+# Logs
+*.log
+wandb/
+
+# Environment
+.env
+.env.local
+
+# Debug artifacts (never commit)
+test_*.py
+debug_*.py
+compare_*.py
+chat.py
+*.bak
+*_output.txt
+*_output.log
+temp_*.json
+label_debug_*.txt
+text_attributes_keys.txt
+run_*.sh
+
+# Validation outputs
+validation/debug_tiles/
+
+# Model checkpoints (large files)
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt

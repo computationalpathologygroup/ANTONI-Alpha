@@ -1,0 +1,60 @@
+# Configuration for Stage 1: Pretraining (Projector Alignment)
+# In this stage, the LLM is frozen and only the projection layer is trained
+# to align vision features with the language model's representation space
+
+# Inherit from base config and override specific settings
+training_stage: "pretrain"
+training_plan: "final_2k_random_longpretrain"
+
+# Model configuration - freeze LLM for projector alignment
+model:
+  llm_model_id: "google/medgemma-4b-it"
+  freeze_llm: true
+  freeze_projection: false
+  projector:
+    num_output_tokens: 256
+    num_query_heads: 8
+    num_kv_heads: 8
+    dropout: 0.1
+    ffn_hidden_dim: null  # Set to integer to enable FFN layer
+
+data:
+  # For pretraining, focus on simpler, more direct image-text pairs
+  # These attributes typically have cleaner image-text correspondences
+  text_attributes:
+    - "clean_report"
+    - "clean_report_dutch"
+    - "clean_report_french"
+    - "clean_report_german"
+    - "clean_report_italian"
+    - "clean_report_polish"
+    - "clean_report_spanish"
+  hdf5_path: "data/train_2k.h5"
+  val_hdf5_path: "data/val.h5"
+  num_workers: 0
+  min_turns: 99
+
+# Training hyperparameters optimized for projector training
+training:
+  # Extended number of epochs for deeper pretraining
+  num_epochs: 35
+  batch_size: 16
+  # Aggressive LR for projector alignment
+  learning_rate: 0.0003
+  weight_decay: 0.001
+  gradient_accumulation_steps: 4
+
+  # Validation - run every checkpoint to monitor alignment
+  validate_every_n_epochs: 1
+
+# Checkpointing - save more frequently during short pretraining
+checkpointing:
+  save_every_n_epochs: 1
+  keep_last_n_checkpoints: 2
+
+# Logging
+logging:
+  logging_steps: 1  # More frequent logging for shorter training
+  use_wandb: true
+  wandb_project: "ANTONI-Alpha"  # Replace with your actual W&B project name
+  wandb_run_name: final_2k_pretrain_random_longpretrain

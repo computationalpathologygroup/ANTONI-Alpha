@@ -1,0 +1,78 @@
+# Base configuration for AntoniAlpha training
+# This file contains default values that can be overridden by stage-specific configs
+
+# Training stage: "pretrain" or "finetune"
+training_stage: "finetune"
+
+# Training plan name for checkpoint organization
+training_plan: "default"
+
+# Model configuration
+model:
+  llm_model_id: "google/medgemma-4b-it"
+  freeze_llm: false
+  freeze_projection: false
+
+  # Projector configuration
+  projector:
+    num_output_tokens: 256
+    num_query_heads: 8
+    num_kv_heads: 8
+    dropout: 0.0
+    ffn_hidden_dim: null  # Set to integer to enable FFN layer
+
+# Data configuration
+data:
+  # Text attributes to use for training - these are the conversation types
+  # that will be sampled from during training
+  text_attributes:
+    - "detailed_description"
+    - "advanced_reasoning"
+    - "multi_turn_conversation"
+    - "negative_reasoning"
+    - "short_vqa"
+    - "differential_diagnosis"
+    - "clean_report"
+
+  # Minimum number of conversation turns to include
+  min_turns: 1
+
+  # Data paths
+  hdf5_path: "data/output/histai_skin_breast_train.h5"
+  val_hdf5_path: "data/output/histai_skin_breast_val.h5"
+  num_workers: 4
+
+# Training hyperparameters
+training:
+  num_epochs: 7
+  batch_size: 16
+  learning_rate: 0.00005
+  weight_decay: 0.01
+  gradient_accumulation_steps: 2
+  max_grad_norm: 1.0
+
+  # Validation
+  validate_every_n_epochs: 1
+
+  # Learning rate scheduler
+  lr_scheduler_type: "cosine"  # linear, cosine, cosine_with_restarts, polynomial, constant
+
+  # Mixed precision training
+  mixed_precision: "bf16"  # no, fp16, bf16
+
+  # FSDP settings (for multi-GPU training)
+  use_fsdp: true  # Set to false for single-GPU training to avoid wrapping issues
+
+# Checkpointing
+checkpointing:
+  output_dir: "./output"
+  save_every_n_epochs: 1
+  keep_last_n_checkpoints: 3
+  resume_from_checkpoint: null
+
+# Logging
+logging:
+  logging_steps: 10
+  use_wandb: false
+  wandb_project: "ANTONI-Alpha"
+  wandb_run_name: null

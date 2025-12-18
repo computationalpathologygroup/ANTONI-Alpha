@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "antoni-alpha"
+version = "0.1.0"
+description = "Vision-Language Model for Computational Pathology"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Sander Moonemans", email = "sander.moonemans@radboudumc.nl" }]
+requires-python = ">=3.9"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = [
+  "deep learning",
+  "vision-language models",
+  "computational pathology",
+  "transformers",
+]
+
+dependencies = [
+  "torch>=2.0.0",
+  "transformers>=4.56.2",
+  "einops>=0.8.0",
+  "environs>=11.0.0",
+  "sacremoses>=0.1.1",
+  "accelerate>=0.21.0",
+  "peft>=0.6.0",
+  "numpy>=1.21.0",
+  "h5py>=3.7.0",
+  "python-dotenv>=1.0.0",
+  "bitsandbytes>=0.47.0",
+  "sentence-transformers>=2.7.0",
+  "pillow>=12.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0.0",
+  "black>=23.0.0",
+  "isort>=5.12.0",
+  "flake8>=6.0.0",
+  "mypy>=1.5.0",
+  "pre-commit>=3.0.0",
+  "debugpy",
+]
+training = [
+  "flash-attn>=2.8.0",
+  "wandb>=0.15.0",
+  "tensorboard>=2.13.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/computationalpathologygroup/ANTONI-Alpha"
+Repository = "https://github.com/computationalpathologygroup/ANTONI-Alpha"
+Documentation = "https://github.com/computationalpathologygroup/ANTONI-Alpha#readme"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

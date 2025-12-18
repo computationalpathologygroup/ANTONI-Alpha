@@ -1,0 +1,68 @@
+# Configuration for Stage 2: Finetuning (Instruction Tuning)
+# In this stage, both the LLM and projection layer are unfrozen and trained
+# to align vision features with the language model's representation space
+
+# Inherit from base config and override specific settings
+training_stage: "finetune"
+training_plan: "final_9k_random_longpretrain"
+
+# Model configuration - unfreeze everything for instruction tuning
+model:
+  llm_model_id: "google/medgemma-4b-it"
+  freeze_llm: false
+  freeze_projection: false
+
+  # Projector configuration
+  projector:
+    num_output_tokens: 256
+    num_query_heads: 8
+    num_kv_heads: 8
+    dropout: 0.1
+    ffn_hidden_dim: null  # Set to integer to enable FFN layer
+
+# Data configuration - use all available text attributes for comprehensive training
+data:
+  # Include all conversation types for instruction following diversity
+  text_attributes:
+    - "detailed_description"
+    - "advanced_reasoning"
+    - "multi_turn_conversation"
+    - "negative_reasoning"
+    - "short_vqa"
+    - "differential_diagnosis"
+    - "clean_report"
+  hdf5_path: "data/train_9k.h5"
+  val_hdf5_path: "data/val.h5"
+  num_workers: 0
+  min_turns: 99
+
+# Training hyperparameters optimized for full model finetuning
+training:
+  # Longer training for instruction tuning
+  num_epochs: 21
+
+  batch_size: 16
+
+  # Optimized LR (3e-5) for finetuning
+  learning_rate: 0.00003
+
+  # Standard weight decay for full model training
+  weight_decay: 0.01
+
+  # Gradient accumulation to maintain effective batch size
+  gradient_accumulation_steps: 4
+
+  # Validation - run every checkpoint to track overfitting
+  validate_every_n_epochs: 1
+
+# Checkpointing - save less frequently during longer training
+checkpointing:
+  save_every_n_epochs: 7
+  keep_last_n_checkpoints: 3
+
+# Logging
+logging:
+  logging_steps: 1  # Standard logging frequency
+  use_wandb: true
+  wandb_project: "ANTONI-Alpha"  # Replace with your actual W&B project name
+  wandb_run_name: final_9k_finetune_random_longpretrain
