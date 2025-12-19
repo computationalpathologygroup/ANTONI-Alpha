@@ -112,11 +112,11 @@ This model is released under the [Health AI Developer Foundations License](https
 
 ```bibtex
 @inproceedings{moonemans2025open,
-  title = {Open Instruction Tuning for Whole-Slide Digital Pathology},
-  author = {Sander Moonemans and Sebastiaan Ram and Fr{\'e}d{\'e}rique Meeuwsen and Jeroen van der Laak and Geert Litjens and Francesco Ciompi},
-  booktitle = {Submitted to Medical Imaging with Deep Learning},
-  year = {2025},
-  url = {https://openreview.net/forum?id=aGPowreqPi},
-  note = {under review}
+  title={Democratizing Pathology Co-Pilots: An Open Pipeline and Dataset for Whole-Slide Vision-Language Modeling},
+  author={Sander Moonemans and Sebastiaan Ram and Fr{\'e}d{\'e}rique Meeuwsen and Carlijn Lems and Jeroen van der Laak and Geert Litjens and Francesco Ciompi},
+  booktitle={Submitted to Medical Imaging with Deep Learning},
+  year={2025},
+  url={https://openreview.net/forum?id=aGPowreqPi},
+  note={under review}
 }
 ```
