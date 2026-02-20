@@ -32,6 +32,14 @@ ANTONI-Alpha is a vision-language model for computational pathology. It combines
 
 ## Installation
 
+**From PyPI** (recommended for running the model):
+
+```bash
+pip install antoni-alpha
+```
+
+**From source** (for development or training):
+
 ```bash
 git clone https://github.com/computationalpathologygroup/ANTONI-Alpha.git
 cd ANTONI-Alpha
