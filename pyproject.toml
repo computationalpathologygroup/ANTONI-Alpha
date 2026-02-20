@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=78.1.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,19 +7,19 @@ name = "antoni-alpha"
 version = "0.1.0"
 description = "Vision-Language Model for Computational Pathology"
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "Sander Moonemans", email = "sander.moonemans@radboudumc.nl" }]
 requires-python = ">=3.9"
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Operating System :: OS Independent",
 ]
 keywords = [
   "deep learning",
@@ -64,12 +64,10 @@ training = [
 Homepage = "https://github.com/computationalpathologygroup/ANTONI-Alpha"
 Repository = "https://github.com/computationalpathologygroup/ANTONI-Alpha"
 Documentation = "https://github.com/computationalpathologygroup/ANTONI-Alpha#readme"
+Issues = "https://github.com/computationalpathologygroup/ANTONI-Alpha/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.setuptools.package-dir]
-"" = "src"
 
 [tool.black]
 line-length = 88
