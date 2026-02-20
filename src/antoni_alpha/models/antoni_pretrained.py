@@ -55,7 +55,7 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
             raise ValueError("A GPU with bfloat16 support is required.")
 
         model_kwargs = dict(
-            torch_dtype=torch.bfloat16,
+            dtype=torch.bfloat16,
             low_cpu_mem_usage=False,  # Disable meta device to avoid nested initialization issues
         )
 
@@ -362,7 +362,7 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
         return state_dict
 
     # PreTrainedModel-specific methods
-    def tie_weights(self):
+    def tie_weights(self, **kwargs):
         """Override to prevent weight tying issues with PEFT-wrapped LLM."""
         # The LLM already handles its own weight tying internally
         # Skip tying to avoid conflicts with PEFT adapter
