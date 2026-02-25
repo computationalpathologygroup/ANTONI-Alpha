@@ -1,0 +1,189 @@
+brain:
+  synonyms: ["central nervous system", "cns", "nervous tissue", "brain parenchyma", "CNS parenchyma", "brain tissue", "cns tissue"]
+  parts:
+    choroid plexus: {}
+    white matter: {}
+    grey matter: {}
+    spinal cord: {}
+    cerebellum:
+      synonyms: ["cerebellum tissue", "cerebellum cortex"]
+
+endocrine_system:
+  synonyms: ["endocrine system", "gland", "glandular tissue"]
+  parts:
+    pituitary:
+      synonyms: ["hypophysis", "pituitary gland", "hyphophyseal tissue", "pituitary tissue"]
+    thyroid:
+      synonyms: ["thyroid gland", "thyroid tissue"]
+    parathyroid:
+      synonyms: ["parathyroid gland", "parathyroid glands", "parathyroid tissue"]
+    adrenal_gland:
+      synonyms: ["adrenal gland", "adrenal glands", "adrenal tissue", "suprarenal gland", "suprarenal glands", "suprarenal tissue"]
+      parts:
+        adrenal_cortex:
+          synonyms: ["adrenal cortex", "adrenocortical tissue", "adrenal cortex", "cortical adrenal tissue", "adrenal gland cortex", "cortex of adrenal gland",
+          "suprarenal cortex", "cortex of suprarenal gland"]
+        adrenal_medulla:
+          synonyms: ["adrenal medulla", "adrenomedulla", "medulla of the adrenal gland", "adrenal gland medulla", "suprarenal medulla", 
+          "medulla of the suprarenal gland", "adrenomedullary tissue"]
+
+lung:
+  synonyms: ["lung tissue", "lungs", "bronchus", "bronchi", "bronchial tissue", "bronchial epithelium", "respiratory epithelium", "bronchiolar mucosa", "bronchial mucosa", "respiratory tract", "pleura"]
+
+cardiovascular_system:
+  synonyms: ["circulatory system"]
+  parts:
+    heart:
+      synonyms: ["heart tissue", "heart muscle", "myocardium", "myocardial tissue", "heart valve", "cardiac tissue", "cardiac muscle", "valvular tissue"]
+    blood_vessels:
+      synonyms: ["blood vessel", "blood vessels", "vascular tissue", "vascular system", "vessel"]
+      parts:
+        artery:
+          synonyms: ["arteries", "arterial tissue", "pulmonary artery", "arterial vessel", "arterial vessels", "aorta"]
+        vein:
+          synonyms: ["veins", "venous tissue", "pulmonary vein", "venous vessel", "venous vessels"]
+
+breast:
+  synonyms: ["mammary tissue", "mammary gland", "mamma", "breast tissue"]
+
+digestive_tract:
+  synonyms: ["digestive", "digestive tract", "digestive system", "digestive tract mucosa", "gastrointestinal", "gastrointestinal system", "gastrointestinal tract", "GI tract", "GI", "enteric system"]
+  parts:
+    esophagus:
+      synonyms: ["esophageal tissue", "oesophagus", "oesophageal tissue"]
+    esophageal-gastric transition:
+      synonyms: ["gastro-esophageal transition", "gastroesophageal junction", "gastroesophageal junction tissue", "esophagogastric junction", "esophagogastric junction tissue",]
+    stomach:
+      synonyms: ["gastric", "gastric tissue", "cardia", "cardial tissue", "fundic tissue", "gastric fundus", "gastric corpus", "corporeal tissue",
+      "gastric corporeal tissue", "gastric body", "gastric body tissue", "pyloric antrum", "gastric antral tissue", "gastric antral region",
+      "pyloric tissue", "gastric pyloric tissue", "pyloric region", "pyloric region tissue", "gastric mucosa", "stomach antrum"]
+    intestine:
+      synonyms: ["bowel", "bowels", "enteric tissue", "intestinal tissue"]
+      parts:
+        small_intestine:
+          synonyms: ["small intestine", "small bowel", "small intestines", "duodenum", "duodenal tissue", "duodenal region", "jejunum", "jejunal tissue",
+          "jejunal region", "ileum", "ileal tissue", "ileal region", "ileo"]
+        appendix:
+          synonyms: ["appendiceal tissue", "vermiform appendix", "cecal appendix", "caecal appendix"] 
+        large_intestine:
+          synonyms: ["large intestine", "colon", "large bowel", "colorectum", "colorectal", "colorectal tissue", "rectum", "rectal mucosa", "lower intestinal tract", "colonic mucosa", "colon tissue", "colon with rectum"]
+
+digestive_adnexa:
+  synonyms: ["digestive adnexa", "gastrointestinal adnexa", "alimentary adnexa"]
+  parts:
+    liver:
+      synonyms: ["hepatic tissue", "liver tissue"]
+    pancreatico_biliary:
+      synonyms: ["pancreatobiliary system", "pancreatico-biliary tract"]
+      parts:
+        biliary_system:
+          synonyms: ["gallbladder", "biliary tissue", "biliary tree"]
+        pancreas:
+          synonyms: ["pancreatic tissue", "exocrine pancreas", "exocrine pancreatic tissue"]
+
+female_genital_system:
+  synonyms: ["female reproductive system", "gynecological system", "female genital tract", "female reproductive tract"]
+  parts:
+    vulva:
+      synonyms: ["vulvar tissue"]
+    vagina:
+      synonyms: ["vaginal tissue"]
+    cervix:
+      synonyms: ["uterine cervix", "cervical canal", "uterine cervical tissue", "cervical tissue"]
+    uterus:
+      synonyms: ["uterine tissue", "endometrium", "endometrial tissue", "uterus tissue"]
+    ovary:
+      synonyms: ["ovaries", "ovarian tissue"]
+    fallopian_tube:
+      synonyms: ["fallopian tube", "fallopian tubes", "oviduct", "oviducts", "ovarian tube", "ovarian tubes", "salpinges", "salpinx", "uterine tube", "uterine tubes"]
+    peritoneum:
+      synonyms: ["peritoneum of the pelvic wall", "pelvic peritoneum", "peritoneal tissue", "peritoneal cavity"]
+
+male_genital_system:
+  synonyms: ["male reproductive system", "male urogenital system"]
+  parts:
+    testis:
+      synonyms: ["testicle", "testicles", "testes", "testicular tissue"]
+    epididymis:
+      synonyms: ["testicular duct", "testicular ducts"]
+    vas_deferens:
+      synonyms: ["vas deferens", "ductus deferens", "spermatic duct", "spermatic ducts"]
+    seminal_vesicle:
+      synonyms: ["seminal vesicle", "seminal vesicles", "seminal gland", "seminal glands"]
+    prostate:
+      synonyms: ["prostate gland", "prostatic tissue", "prostate tissue", "prostatic tissues", "normal prostate tissue"]
+    penis:
+      synonyms: ["penile tissue"]
+    peritoneum:
+      synonyms: ["peritoneum of the pelvic wall", "pelvic peritoneum", "peritoneal tissue", "peritoneal cavity"]
+
+urinary_system:
+  synonyms: ["renal system", "excretory system", "urinary apparatus"]
+  parts:
+    kidney:
+      synonyms: ["kidney tissue", "kidneys", "nephron", "nephrons", "renal tissue", "kidney cortex"]
+    ureter:
+      synonyms: ["urinary conduits", "ureters"]
+    urinary_bladder:
+      synonyms: ["urinary bladder", "bladder", "bladder tissue", "urothelium"]
+    urethra:
+      synonyms: ["urethral tissue"]
+
+lymphoid_tissue:
+  synonyms: ["lymphoid tissue", "lymphatic tissue", "lymphoid organ", "lymphoid organs", "hematopoietic lymphoid tissue", "lymphatic organ tissue"]
+  parts:
+    lymph_node:
+      synonyms: ["lymph node", "lymphatic node", "lymph node tissue", "thoracic lymph node"]
+    bone_marrow:
+      synonyms: ["bone marrow", "myeloid tissue", "bone marrow tissue", "bone marrow biopsy"]
+    thymus:
+      synonyms: ["thymic gland", "thymic tissue", "thymus tissue"]
+    spleen:
+      synonyms: ["splenic tissue"]
+    tonsil:
+      synonyms: ["tonsils", "tonsil tissue"]
+
+soft_tissue:
+  synonyms: ["soft tissue", "connective tissue", "fibrous tissue", "fibroadipous tissue", "stroma", "stromal tissue", "soft tissues"]
+  parts:
+    adipose tissue:
+      synonyms: ["fat", "fatty tissue", "fat cells"]
+    nerve:
+      synonyms: ["nerve tissue"]
+
+musculoskeletal_tissue:
+  parts:
+    bone:
+      synonyms: ["bone marrow", "trabeculae", "bone tissue", "cartilage"]
+    synovium:
+      synonyms: ["synovial tissue"]
+    muscle:
+      synonyms: ["skeletal muscle", "skeletal muscle tissue", "smooth muscle", "smooth muscle tissue", "muscle tissue"]
+    
+skin:
+  synonyms: ["skin tissue", "skin/subcutis", "subcutis", "epidermis", "dermis", "epidermal tissue", "dermal tissue", "subcutaneous tissue", "stratified squamous epithelium", "squamous epithelium", "normal skin"]
+
+head_and_neck:
+  synonyms: []
+  parts:
+    tooth: {}
+    trachea: {}
+    eye: {}
+    lip: {}
+    tongue:
+      synonyms: ["tongue tissue"]
+    nose:
+      synonyms: ["sinonasal mucosa", "respiratory mucosa", "squamous mucosa", "nasal cavity", "nasal mucosa"]
+    oropharynx:
+      synonyms: ["larynx", "pharynx", "oral cavity", "throat", "oral mucosa", "tongue"]
+    salivary gland:
+      synonyms: ["salivary gland tissue"]
+      parts:
+        parotid gland:
+          synonyms: ["parotid gland tissue", "parotid"]
+
+placenta:
+  synonyms: ["chorionic villi", "placental tissue", "umbilical cord", "placenta tissue"]
+
+no_normal_tissue:
+  synonyms: ["no normal tissue"]
