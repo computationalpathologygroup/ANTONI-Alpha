@@ -1,0 +1,48 @@
+validation:
+  labeled_data_path: "data/validation/labeled_data_final.json"
+  h5_data_path: "data/validation/test_317.h5"
+  thumbnails_dir: "data/validation/thumbnails"
+  output_dir: "output/validation_results"
+
+models:
+  antoni_alpha:
+    - name: "antoni_alpha_optimized"
+      path: "SaltySander/ANTONI-Alpha"
+      type: "antoni_alpha"
+    - name: "antoni_alpha_pretrain_only"
+      path: "SaltySander/ANTONI-Alpha"
+      revision: "pretrain"
+      type: "antoni_alpha"
+
+  medgemma:
+    - name: "medgemma_4b_untiled"
+      path: "google/medgemma-4b-it"
+      type: "medgemma"
+      use_tiling: false
+      save_tiles: true
+    - name: "medgemma_27b_untiled"
+      path: "google/medgemma-27b-it"
+      type: "medgemma"
+      use_tiling: false
+      save_tiles: true
+
+pipeline:
+  batch_size: 1
+  device: "cuda"
+  evaluation_method: "generation"  # Options: "generation" or "perplexity"
+  # Note: perplexity mode applies to Q2 (yes/no) and Q3 (diagnosis) only
+  # Q1 (organ) always uses generation mode with hierarchical scoring
+  questions:
+    - "organ" # Q1
+    - "tumor" # Q2
+    - "diagnosis" # Q3
+
+# Hierarchical Organ Scoring Configuration
+organ_scoring:
+  enabled: true
+  taxonomy_path: "validation/organ/taxonomy.yaml"
+  # Scoring system:
+  #   1.0  - Exact match
+  #   0.75 - One-hop away (parent-child or sibling)
+  #   0.5  - Two-hop away
+  #   0.0  - No match
