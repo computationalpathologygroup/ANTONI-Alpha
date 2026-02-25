@@ -145,6 +145,7 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
             pretrained_model_name_or_path: Path to checkpoint directory or HuggingFace model ID
             config: Optional AntoniAlphaConfig instance
             token: HuggingFace Hub authentication token
+            revision: Specific model version to use (branch name, tag, or commit hash)
             device_map: Device placement map (applied after loading)
             **kwargs: Additional arguments passed to config loading
 
@@ -153,6 +154,7 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
         """
         config = kwargs.pop("config", None)
         token = kwargs.pop("token", None)
+        revision = kwargs.pop("revision", None)
         device_map = kwargs.pop("device_map", None)
         ignore_mismatched_sizes = kwargs.pop("ignore_mismatched_sizes", False)
 
@@ -163,7 +165,9 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
             if Path(pretrained_model_name_or_path).exists():
                 config_path = str(Path(pretrained_model_name_or_path).resolve())
 
-            config = AntoniAlphaConfig.from_pretrained(config_path, token=token, **kwargs)
+            config = AntoniAlphaConfig.from_pretrained(
+                config_path, token=token, revision=revision, **kwargs
+            )
             logger.info(f"Loaded config from {config_path}")
 
         # 2. Initialize Model (without device_map to avoid meta tensor issues)
@@ -180,8 +184,8 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
             state_dict = cls._load_local_checkpoint(pretrained_path)
         else:
             # HuggingFace Hub model
-            logger.info(f"Loading from HuggingFace Hub: {pretrained_model_name_or_path}")
-            state_dict = cls._load_hub_checkpoint(pretrained_model_name_or_path, token)
+            logger.info(f"Loading from HuggingFace Hub: {pretrained_model_name_or_path} (revision: {revision})")
+            state_dict = cls._load_hub_checkpoint(pretrained_model_name_or_path, token, revision)
 
         # 4. Apply Weights
         logger.info("Loading state dict into model...")
@@ -255,7 +259,7 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
             raise OSError(f"No checkpoint files found in {checkpoint_path}")
 
     @staticmethod
-    def _load_hub_checkpoint(model_id: str, token: str = None) -> dict:
+    def _load_hub_checkpoint(model_id: str, token: str = None, revision: str = None) -> dict:
         """Load checkpoint from HuggingFace Hub."""
         user_agent = {"file_type": "model", "framework": "pytorch", "from_auto_class": False}
 
@@ -265,13 +269,14 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
                 model_id,
                 filename=SAFE_WEIGHTS_INDEX_NAME,
                 token=token,
+                revision=revision,
                 user_agent=user_agent
             )
             logger.info("Found sharded safetensors on hub")
             checkpoint_dir = Path(index_file).parent
             return AntoniAlphaPreTrained._load_sharded_checkpoint(
                 checkpoint_dir, SAFE_WEIGHTS_INDEX_NAME, use_safetensors=True,
-                model_id=model_id, token=token
+                model_id=model_id, token=token, revision=revision
             )
         except OSError:
             pass
@@ -282,6 +287,7 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
                 model_id,
                 filename=SAFE_WEIGHTS_NAME,
                 token=token,
+                revision=revision,
                 user_agent=user_agent
             )
             logger.info("Found single safetensors on hub")
@@ -295,13 +301,14 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
                 model_id,
                 filename=WEIGHTS_INDEX_NAME,
                 token=token,
+                revision=revision,
                 user_agent=user_agent
             )
             logger.info("Found sharded pytorch checkpoint on hub")
             checkpoint_dir = Path(index_file).parent
             return AntoniAlphaPreTrained._load_sharded_checkpoint(
                 checkpoint_dir, WEIGHTS_INDEX_NAME, use_safetensors=False,
-                model_id=model_id, token=token
+                model_id=model_id, token=token, revision=revision
             )
         except OSError:
             pass
@@ -312,6 +319,7 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
                 model_id,
                 filename=WEIGHTS_NAME,
                 token=token,
+                revision=revision,
                 user_agent=user_agent
             )
             logger.info("Found single pytorch checkpoint on hub")
@@ -324,7 +332,7 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
 
     @staticmethod
     def _load_sharded_checkpoint(checkpoint_dir: Path, index_filename: str, use_safetensors: bool,
-                                 model_id: str = None, token: str = None) -> dict:
+                                 model_id: str = None, token: str = None, revision: str = None) -> dict:
         """Load sharded checkpoint from index file."""
         index_path = checkpoint_dir / index_filename
 
@@ -345,6 +353,7 @@ class AntoniAlphaPreTrained(PreTrainedModel, AntoniAlphaMixin):
                     model_id,
                     filename=shard_file,
                     token=token,
+                    revision=revision,
                     user_agent=user_agent
                 )
                 shard_path = Path(shard_path)
