@@ -1,0 +1,4 @@
+numpy
+tifffile
+openslide-python
+pyyaml
